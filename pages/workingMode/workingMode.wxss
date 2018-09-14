@@ -1,0 +1,52 @@
+/* pages/workingMode/workingMode.wxss */
+page{
+  background-color: #f5f5f5;
+}
+.page-head{
+  text-align: center;
+  padding: 20px 0;
+}
+.weui-msg{
+  padding-top: 0;
+}
+.page-head .weui-flex-t1 .placeholder{
+  font-size: 16px;
+  color: #656565;
+}
+.page-head .weui-flex-t2 .placeholder{
+  font-weight: bold;
+  font-size: 22px;
+  color: #656565;
+}
+.page-head .weui-flex-t2 .placeholder.placeholder-2{
+  color: #f36902;
+}
+.weui-btn-area .weui-btn{
+  background: linear-gradient(to right, #f36902 , #ff9911);
+}
+.bottom-text{
+  text-align: center;
+  font-size: 12px;
+  color: #656565;
+}
+.weui-cell{
+  padding: 15px;
+}
+.weui-cell__ft .price{
+  display: inline-block;
+  color: #000;
+  margin-right: 10px;
+}
+
+.weui-cell .weui-cell__bd .text{
+  font-size: 12px;
+  color: #656565;
+}
+.weui-cell .weui-cell__bd text{
+  background-color: #e0e0e0;
+  color: #ffffff;
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 0px 2px 2px 2px;
+  margin-left: 5px;
+}

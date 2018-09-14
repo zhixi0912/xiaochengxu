@@ -1,0 +1,23 @@
+<!--pages/rechargeSuccess/rechargeSuccess.wxml-->
+<view class="page">
+    <view class="weui-msg">
+      <view class='recharge-box'>
+        <view class="weui-msg__icon-area">
+            <icon type="success" size="93"></icon>
+        </view>
+        <view class="weui-msg__text-area">
+            <view class="weui-msg__title">充值成功</view>
+            <view class="weui-msg__desc">当前帐户余额<text>123.00元</text></view>
+        </view>
+      </view>
+        <view class="weui-msg__opr-area">
+            <view class="weui-btn-area">
+                <button class="weui-btn weui-btn-1" type="primary">立即洗衣</button>
+                <button class="weui-btn weui-btn-2" type="default">继续充值</button>
+            </view>
+        </view>
+        <view class="weui-msg__extra-area">
+            
+        </view>
+    </view>
+</view>

@@ -1,0 +1,27 @@
+<!--pages/information/information.wxml-->
+<view class="container">
+ <view class="page-body">
+    <view class="weui-cells weui-cells_after-title">
+        <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__bd">头像</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"><image src='../../images/personal/user-icon.png' style='width:60px;height:60px;vertical-align: middle;display: block'></image></view>
+        </navigator>
+        <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__bd">昵称</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">王小萌</view>
+        </navigator>
+        <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__bd">性别</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">女</view>
+        </navigator>
+        <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__bd">年龄</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">22</view>
+        </navigator>
+        <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__bd">手机号</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">18666668888</view>
+        </navigator>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,41 @@
+<!--pages/workHave/workHave.wxml-->
+<view class="page">
+    <view class="weui-msg">
+      <view class='recharge-box'>
+        <view class="weui-msg__icon-area">
+            <icon type="warn" size="93"></icon>
+        </view>
+        <view class="weui-msg__text-area">
+            <view class="weui-msg__title">支付成功</view>
+            <view class="weui-msg__desc">放好衣物后，按洗衣机上的“开始”按钮即可开始洗衣</view>
+        </view>
+      </view>
+      <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">洗衣模式</view>
+                <view class="weui-cell__ft">标准洗</view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">预计洗衣时间</view>
+                <view class="weui-cell__ft">20分钟</view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">洗衣编号</view>
+                <view class="weui-cell__ft">360622</view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">洗衣机站点</view>
+                <view class="weui-cell__ft">上海大学5号楼</view>
+            </view>
+        </view>
+        <view class="weui-msg__opr-area">
+            <view class="weui-btn-area">
+                <button class="weui-btn weui-btn-1" type="primary" bindtap="showTopTipsCancel">取消订单</button>
+                <button class="weui-btn weui-btn-2" type="default" bindtap="showTopTipsRepair">设备报修</button>
+            </view>
+        </view>
+        <view class="weui-msg__extra-area">
+            
+        </view>
+    </view>
+</view>
