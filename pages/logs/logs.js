@@ -184,7 +184,7 @@ Page({
     
     wx.login({
       success: function (res) {
-       
+        console.log(res);
         if (res.code) {
           loginDevice = loginDevice + res.code //临时code值
          

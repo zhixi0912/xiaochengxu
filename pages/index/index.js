@@ -1,59 +1,25 @@
 //index.js
+
+var markers = [];//地图标记点
+var callout = [];//地图标记点的气泡
+
 //获取应用实例
 var app = getApp()
-
-var rest=[
-    {
-      "id": 0,
-      "title": "去这里",
-      "iconPath": "../../images/index/machine.png",
-      "latitude": 32.25956,
-      "longitude": 121.52609,
-      "width": 45,
-      "height": 50
-    }
-    , {
-      "id": 1,
-      "title": "去这里",
-      "iconPath": "../../images/index/machine.png",
-      "latitude": 32.25956,
-      "longitude": 122.52609,
-      "width": 45,
-      "height": 50
-    },{
-      "id": 2,
-      "title": "去这里",
-      "iconPath": "../../images/index/machine.png",
-      "latitude": 31.25956,
-      "longitude": 122.52609,
-      "width": 45,
-      "height": 50
-    }, {
-      "id": 3,
-      "title": "去这里",
-      "iconPath": "../../images/index/machine.png",
-      "latitude": 31.25956,
-      "longitude": 120.52609,
-      "width": 45,
-      "height": 50
-    }
-  ]
 
 Page({
   data: {
     scale:18,
     latitude:0,
     longitude:0,
-    markers: [],// 地图上控件数组
+    //markers: [],// 地图上控件数组
   },
   onLoad:function(options){
     // 1.页面初始化 options为页面跳转所带来的参数
     var that = this;
     // 2.调用wx.getLocation系统API,获取并设置当前位置经纬度
-    this.timer = options.timer;// 1.获取定时器，用于判断是否已经在计费
+    this.timer = options.timer;// 2.1.获取定时器，用于判断是否已经在计费
    
-    that.getLocationShow(that); //初始化地图坐标
-
+    
 
     // 3.设置地图控件的位置及大小，通过设备宽高定位
     wx.getSystemInfo({
@@ -117,7 +83,12 @@ Page({
           ],
         })
       }
-    })    
+    })   
+    //4,查询洗衣机站列表
+    that.getLocationShow(that); //初始化地图坐标
+   
+
+
   },
   onShow:function(){
     this.mapCtx = wx.createMapContext('myMap');
@@ -174,8 +145,13 @@ Page({
   // 地图标记点击事件，连接用户位置和点击的单车位置
   bindmarkertap: function (e) {
     let _markers = this.data.markers; // 拿到标记数组
+    console.log("=======", _markers)
     let markerId = e.markerId; // 获取点击的标记id
+    console.log("=======", markerId)
     let currMaker = _markers[markerId]; // 通过id,获取当前点击的标记
+    console.log("=======", _markers[markerId])
+    
+    console.log("+++++++++", this.data)
     this.setData({
       polyline: [{
         points: [{ // 连线起点
@@ -192,61 +168,126 @@ Page({
       scale: 18
     })
   },
+  // 拖动地图，获取附件洗衣机位置
   bindregionchange: function (e) {
-    console.log("9999")
+   
     
-    that.siteInfoList();
-    // 拖动地图，获取附件洗衣机位置
+   // that.siteInfoList();
+    console.log(e.type)
     if (e.type == "begin") {
       var that = this;
       // that.siteInfoList();
       this.setData({
         // mark= res.data.data
       })
-      // 停止拖动，显示单车位置
+      // 停止拖动，显示洗衣机位置
     } else if (e.type == "end") {
+     // console.log(".........",this.data);
       this.setData({
         markers: this.data._markers
       })
     }
   },
-  getLocationShow:function(that){
+  getLocationShow: function (that) {  //查询洗衣机站列表
     wx.getLocation({
-      // type: 'wgs84',
-      type: 'gcj02',
-      success: function (res) {
-        that.setData({
-          latitude: res.latitude,
+      type: "gcj02",
+      success: (res) => {
+        this.setData({
           longitude: res.longitude,
+          latitude: res.latitude
+        })
 
-        })
-        
-        var data = {}
-        data.appid = 'wxf79825c96701f981'; //appid
-        var timestamp = Date.parse(new Date());//获取当前时间戳 
-        data.timestamp = timestamp / 1000; 
-        data.version = 1.0; //版本号
-        data.sign = 'erwlkrjlkwjelrjwlke'; //签名
-        data.latitude = res.latitude;  //纬度
-        data.longitude = res.longitude; //经度
-        data.rang = 10000;  //范围【单位米】
-        wx.request({
-          url: 'http://uat.kingxiyun.com/xiaoyou/site/siteManage/siteInfoList',
-          data: data,
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (res) {
-            that.setData({
-              county: res.data,
-            })
-            console.log(res)
-          },
-        })
+        console.log(res);
+
+    var appid = '1100310183560349'; //appid wxf79825c96701f981
+
+    var timestamp = Date.parse(new Date());//获取当前时间戳 
+    timestamp = timestamp / 1000;
+    var version = '1.0'; //版本号
+    var sign = 'erwlkrjlkwjelrjwlke'; //签名
+    var currentLatitude = res.latitude;  //纬度
+    var currentLongitude = res.longitude; //经度
+    var rang = 10000;  //范围【单位米】
+    
+    wx.request({ //获取当前定位经续度作为条件传入后台查询当前附近10公里范围内机站坐标列表
+      method: "post",
+      url: 'http://uat.kingxiyun.com/xiaoyou/site/siteManage/siteInfoList',
+      data: '{"appId": "' + appid + '", "timestamp": ' + timestamp + ', "version": "' + version + '", "sign": "' + sign + '", "latitude": "' + currentLatitude + '","longitude":"' + currentLongitude + '","rang":"' + rang + '" }@#@1100310183560349',
+      header: {
+        'content-type': 'application/json'
+      },
+      dataType: "json",
+      success: function (res) {
+
+        if (res.data.code == '0000') {
+
+          var listData = res.data.data.siteInfoList;
+          // var siteInfoList = [];
+          // for (var i = 0; i < siteInfoData.length; i++) {
+          //   var str = siteInfoData[i];
+          //   siteInfoList.push({ latitude: str.latitude, longitude: str.longitude });
+          // }
+          // console.log(listData);
+
+          for (var i = 0; i < listData.length; i++) {
+            markers = markers.concat({
+              iconPath: "../../images/index/dizhi.png",
+              id: listData[i].sid,
+              latitude: listData[i].latitude,
+              longitude: listData[i].longitude,
+              width: 40,
+              height: 46,
+              clickable: false,
+            });
+
+          }
+          // console.log(markers)
+          that.setData({
+            markers: markers,
+            latitude: listData[0].latitude,
+            longitude: listData[0].longitude
+          })
+
+
+
+
+        } else {
+          wx.showToast({
+            title: '请求失败',
+            icon: 'error',
+            image: '../../images/error.png',
+            duration: 2000
+          })
+          console.log(res)
+        }
+
+      }, fail: function (res) {
+        console.log(res)
       }
     })
-  }
 
+    }
+  });
+  }, 
+  // ajaxState:function(res){
+  //   console.log(res.data.code)
+  //   if (res.data.code == '0000') {
+  //     wx.showToast({
+  //       title: '请求成功',
+  //       icon: 'error',
+  //       image: '../../images/error.png',
+  //       duration: 2000
+  //     })
+  //   } else {
+  //     wx.showToast({
+  //       title: '请求失败',
+  //       icon: 'error',
+  //       image: '../../images/error.png',
+  //       duration: 2000
+  //     })
+  //   }
+  // }
+ 
 
 
 })
