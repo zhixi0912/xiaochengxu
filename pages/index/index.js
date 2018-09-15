@@ -109,7 +109,8 @@ Page({
       break;
       case 3:wx.scanCode({  //扫码洗衣
         
-        success: (res) => {
+        success: (res) => { //扫码成功
+          // console.log("二维码结果是：", res.result)
           this.show = "结果:" + res.result + "二维码类型:" + res.scanType + "字符集:" + res.charSet + "路径:" + res.path;
           that.setData({
             show: this.show,
@@ -120,18 +121,63 @@ Page({
             icon: 'success',
             duration: 2000
           })
+          // console.log("suc");
+          var appid = '1100310183560349'; //appid wxf79825c96701f981
+          var timestamp = Date.parse(new Date());//获取当前时间戳 
+          timestamp = timestamp / 1000;
+          var version = '1.0'; //版本号
+          var sign = 'erwlkrjlkwjelrjwlke'; //签名
+          // var deviceCode = 'D100000002'; 
+          var deviceCode = res.result; //洗衣机编号
+          wx.request({ //获取当前定位经续度作为条件传入后台查询当前附近10公里范围内机站坐标列表
+            method: "post",
+            url: 'http://uat.kingxiyun.com/xiaoyou/device/washing/queryWorkModeAndPriceList',
+            data: '{"appId": "' + appid + '", "timestamp": ' + timestamp + ', "version": "' + version + '", "sign": "' + sign + '", "deviceCode": "' + deviceCode + '", }@#@1100310183560349',
+            header: {
+              'content-type': 'application/json'
+            },
+            dataType: "json",
+            success: function (res) {
+              
+              var status =res.data.code;
+              if (status== '0000'){
+                that.errorShow('扫码成功');
+                
+                var workModeAndPriceList = res.data.data.workModeAndPriceList;
+                var result = JSON.stringify(workModeAndPriceList);
+                // console.log(workModeAndPriceList);
+                // console.log(result);
+                wx.navigateTo({ url: '../workingMode/workingMode?workModeAndPriceList=' + JSON.stringify(workModeAndPriceList) });
+                
+              } else if (status == '2007') { //设备不存在
+                that.errorShow('设备不存在');
+              } else if (status == '2017') { //洗衣机已被使用
+                that.errorShow('洗衣机已被使用');
+              } else if (status == '2018') { //洗衣机盖没关
+                that.errorShow('洗衣机盖没关');
+              } else if (status == '2019') { //洗衣机故障
+                that.errorShow('洗衣机故障');
+              } else if (status == '2020') { //洗衣机消毒中
+                that.errorShow('洗衣机消毒中');
+              }else{  //设备异常
+                that.errorShow('设备异常');
+              }
+
+            }, fail: function (res) {
+              console.log("请求失败",res)
+            }
+          })
+
+
         },
         fail: (res) => {
-          wx.showToast({
-            title: '失败',
-            icon: 'success',
-            duration: 2000
-          })
+          that.errorShow('扫码失败');
+          console.log("fail", res);
         },
         complete: (res) => {
+
         } 
-      }),
-      wx.navigateTo({ url: '../workingMode/workingMode' });
+      });
       break;
       case 4: wx.navigateTo({ url: '../personal/personal' });  //用户中心
       break;
@@ -171,18 +217,88 @@ Page({
   // 拖动地图，获取附件洗衣机位置
   bindregionchange: function (e) {
    
-    
+    var that = this;
    // that.siteInfoList();
-    console.log(e.type)
+    // console.log(e)
+    
     if (e.type == "begin") {
-      var that = this;
-      // that.siteInfoList();
-      this.setData({
-        // mark= res.data.data
+      
+      var appid = '1100310183560349'; //appid wxf79825c96701f981
+      var timestamp = Date.parse(new Date());//获取当前时间戳 
+      timestamp = timestamp / 1000;
+      var version = '1.0'; //版本号
+      var sign = 'erwlkrjlkwjelrjwlke'; //签名
+      var currentLatitude = this.data.latitude;  //纬度
+      var currentLongitude = this.data.longitude; //经度
+      var rang = 10000;  //范围【单位米】
+      // console.log(".........", currentLongitude, currentLatitude);
+      wx.request({ //获取当前定位经续度作为条件传入后台查询当前附近10公里范围内机站坐标列表
+        method: "post",
+        url: 'http://uat.kingxiyun.com/xiaoyou/site/siteManage/siteInfoList',
+        data: '{"appId": "' + appid + '", "timestamp": ' + timestamp + ', "version": "' + version + '", "sign": "' + sign + '", "latitude": "' + currentLatitude + '","longitude":"' + currentLongitude + '","rang":"' + rang + '" }@#@1100310183560349',
+        header: {
+          'content-type': 'application/json'
+        },
+        dataType: "json",
+        success: function (res) {
+
+          if (res.data.code == '0000') {
+
+            var listData = res.data.data.siteInfoList;
+            // var siteInfoList = [];
+            // for (var i = 0; i < siteInfoData.length; i++) {
+            //   var str = siteInfoData[i];
+            //   siteInfoList.push({ latitude: str.latitude, longitude: str.longitude });
+            // }
+            // console.log(listData);
+
+            for (var i = 0; i < listData.length; i++) {
+              markers = markers.concat({
+                iconPath: "../../images/index/dizhi.png",
+                id: listData[i].sid,
+                latitude: listData[i].latitude,
+                longitude: listData[i].longitude,
+                width: 40,
+                height: 46,
+                clickable: false,
+              });
+
+            }
+            
+            that.setData({
+              _markers: markers,
+              latitude: listData[0].latitude,
+              longitude: listData[0].longitude
+            })
+
+            // console.log(_markers)
+
+
+          } else {
+            wx.showToast({
+              title: '请求失败',
+              icon: 'error',
+              image: '../../images/error.png',
+              duration: 2000
+            })
+            console.log(res)
+          }
+
+        }, fail: function (res) {
+          console.log(res)
+        }
       })
+
+
+
+
+
+
+
+
       // 停止拖动，显示洗衣机位置
     } else if (e.type == "end") {
-     // console.log(".........",this.data);
+       console.log("----------",this.data);
       this.setData({
         markers: this.data._markers
       })
@@ -196,11 +312,10 @@ Page({
           longitude: res.longitude,
           latitude: res.latitude
         })
-
-        console.log(res);
+        // console.log("////////", res);
+       
 
     var appid = '1100310183560349'; //appid wxf79825c96701f981
-
     var timestamp = Date.parse(new Date());//获取当前时间戳 
     timestamp = timestamp / 1000;
     var version = '1.0'; //版本号
@@ -222,12 +337,7 @@ Page({
         if (res.data.code == '0000') {
 
           var listData = res.data.data.siteInfoList;
-          // var siteInfoList = [];
-          // for (var i = 0; i < siteInfoData.length; i++) {
-          //   var str = siteInfoData[i];
-          //   siteInfoList.push({ latitude: str.latitude, longitude: str.longitude });
-          // }
-          // console.log(listData);
+        
 
           for (var i = 0; i < listData.length; i++) {
             markers = markers.concat({
@@ -269,6 +379,14 @@ Page({
     }
   });
   }, 
+  errorShow: function (error){ //统一调用错误提醒tips
+    wx.showToast({
+      title: error,
+      icon: 'error',
+      image: '../../images/error.png',
+      duration: 2000
+    })
+  }
   // ajaxState:function(res){
   //   console.log(res.data.code)
   //   if (res.data.code == '0000') {

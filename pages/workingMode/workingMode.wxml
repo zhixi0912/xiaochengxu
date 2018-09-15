@@ -15,16 +15,16 @@
   <view class="page-body">
     <view class="weui-cells weui-cells_after-title">
             <radio-group bindchange="radioChange">
-                <label class="weui-cell weui-check__label" wx:for="{{radioItems}}" wx:key="value">
-                    <radio class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
-
+                <label class="weui-cell weui-check__label" wx:for="{{radioItems}}" wx:key="index" data-orderAmount="{{item.platformPrice}}">
+                    <!-- <radio class="weui-check" value="{{item.modeId}}" /> -->
+                    <radio class="weui-check" value="{{item.modeId}}" data-orderAmount="{{item.platformPrice}}"  />
                     <view class="weui-cell__bd">
-                      <view>{{item.name}}<text>{{item.time}}</text></view>
-                      <view class='text'>{{item.text}}</view>
+                      <view>{{item.modeName}}<text>{{item.modeTime}}</text></view>
+                      <view class='text'>{{item.modeTime}}</view>
                     </view>
                     <view class="weui-cell__ft weui-cell__ft_in-radio">
-                        <view class='price'>{{item.price}}</view>
-                        <view class='ck'><icon class="weui-icon-radio" type="success_no_circle-1" size="16" wx:if="{{item.checked}}"></icon></view>
+                        <view class='price'>{{item.platformPrice}}</view>
+                        <view class='ck'><icon class="weui-icon-radio" type="success_no_circle-1" size="16" wx:if="{{item.modeId==default}}"></icon></view>
                     </view>
                 </label>
             </radio-group>
