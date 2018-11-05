@@ -1,0 +1,36 @@
+<!--pages/equipmentRepair/equipmentRepair.wxml-->
+<view class="container">
+  <view class="page-head">
+    <view class="weui-btn-area">
+        <view class="weui-cell__bd-text">
+            <input class="weui-input" placeholder="输入洗衣机编号或扫描二维码" value='{{deviceCode}}' bindinput="deviceCode" />
+        </view>
+        <view class="weui-cell__bd-icon" bindtap="showTopTips"><image src='../../images/icon-scavenging.png'></image></view>
+    </view>
+  </view>
+  <view class="page-body">
+    <view class="page__title">故障类型</view>
+    <view class="weui-grids">
+        <radio-group bindchange="radioChange">
+            <label class="weui-grid" hover-class="weui-grid_active" wx:for="{{radioItems}}" wx:key="index">
+                <radio class="weui-check" value="{{item.val}}" />
+                <image class="weui-grid__icon" src="{{item.imgSrc}}" />
+                <view class="weui-grid__label">{{item.describe}}</view>
+            </label>
+            
+        </radio-group>
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                <textarea class="weui-textarea" placeholder="请输入故障描述" bindinput='showTextarea' value='{{textareaShow}}' style="height: 6.3em;border-radius: 5px;" />
+                <!-- <view class="weui-textarea-counter">0/200</view> -->
+            </view>
+        </view>
+    </view>
+    <view class="weui-btn-area">
+        <button class="weui-btn weui-btn-link" type="primary" bindtap="subEquipment">确定</button>
+    </view>
+    
+  </view>
+</view>

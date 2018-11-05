@@ -1,0 +1,43 @@
+/* pages/rechargeSuccess/rechargeSuccess.wxss */
+.weui-msg{
+  padding-top: 0;
+}
+.page-section-ctn {
+  width: 244rpx; /*122px*/
+  text-align: center;
+  margin: 0 auto;
+}
+.page-section-ctn image{
+  width: 100%;
+  height: 222rpx; /*111px*/
+  margin-top: 120rpx;
+  margin-bottom: -40rpx;
+  overflow: inherit;
+}
+.recharge-box{
+  margin: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow:0px 4px 20px #e0e0e0;
+  margin-bottom: 30px;
+}
+
+.weui-msg__opr-area .weui-btn{
+  display: inline-block;
+  width: 45%;
+}
+.weui-msg__opr-area .weui-btn-1{
+  margin-left: 5%;
+  background: #fff;
+  border: 1px solid #d7d9db;
+  color: #000;
+}
+.weui-msg__opr-area .weui-btn-2{
+  margin-left: 5%;
+  background: linear-gradient(to right, #e60012 , #e60012);
+  color: #fff;
+}
+.weui-msg__desc text{
+  margin-left: 10px;
+  color: #ff9911;
+}

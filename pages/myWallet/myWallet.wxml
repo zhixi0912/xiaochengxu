@@ -1,0 +1,28 @@
+  <!--pages/myWallet/myWallet.wxml-->
+<view class="container">
+  <view class="page-head">
+  </view>
+  <view class="page-body">
+    <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="placeholder placeholder-line">
+            <view class='wallet-t1'>￥<text>{{accountBalance/100}}</text></view>
+            <view class='wallet-t2'>钱包余额</view>
+          </view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            <view class='wallet-t1'><text>{{pointsBalance}}</text></view>
+            <view class='wallet-t2'>积分值</view>
+          </view>
+        </view>
+        
+    </view>
+    <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" bindtap="showTopTips">去充值</button>
+    </view>
+    <view class="weui-btn-area-new" bindtap="showToNew">查看明细</view>
+  </view>
+  
+</view>
+

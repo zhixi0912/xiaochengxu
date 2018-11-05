@@ -1,0 +1,59 @@
+<!--pages/workingMode/workingMode.wxml-->
+<view class="container">
+  <!-- <view class="page-head">
+    <view class="weui-flex weui-flex-t1">
+        <view class="weui-flex__item"><view class="placeholder">模式</view></view>
+        <view class="weui-flex__item"><view class="placeholder">金额</view></view>
+        <view class="weui-flex__item"><view class="placeholder">时间</view></view>
+    </view>
+    <view class="weui-flex weui-flex-t2">
+        <view class="weui-flex__item"><view class="placeholder placeholder-1">标准洗</view></view>
+        <view class="weui-flex__item"><view class="placeholder placeholder-2">￥4.0</view></view>
+        <view class="weui-flex__item"><view class="placeholder placeholder-3">20分钟</view></view>
+    </view>
+  </view> -->
+  <view class="page-body">
+
+
+<form bindsubmit="submitInfo" report-submit="true">
+
+    <view class="weui-cells weui-cells_after-title">
+
+        <radio-group class="weui-grids" bindchange="radioChange">
+            <label class='weui-grid' wx:for="{{radioItems}}" wx:key="index">
+              <radio class="weui-check" value="{{item.modeId}}" data-orderAmount="{{item.platformPrice}}"  />
+            <!-- <view  class="weui-grid-box" style="{{item.modeId == defaultNum ? 'background-image: url(../../images/workingMode/pattern-ac.png)' : null}}" > -->
+            <!-- <view  class="weui-grid-box" style="background-image: url(../../images/points-icon.png)" > -->
+              <view  class="weui-grid-box" style="{{item.modeId == defaultNum ? 'background-color: #e6e6e6' : null}}" >
+                <view class="weui-grid__label head-title">{{item.modeName}}</view>
+                <view class="weui-grid__icon">
+                  <image class='phone-icon' style="width: {{imagewidth}}px; height: {{imageheight}}px;" bindload="imageLoad" src='{{item.imgSrc}}'></image>
+                </view>
+                <view class="weui-grid__label bott-title">
+                  金额<text class="money">{{item.platformPrice/100}}元</text>时长<text class="time">{{item.modeTime}}分钟</text>
+                </view>
+              </view>
+            </label>
+        </radio-group>
+
+           
+    </view>
+
+
+
+    <view class="weui-btn-area">
+        <!-- <button class="weui-btn" type="primary" bindtap="showTopTips">确定</button> -->
+        <button class="weui-btn" form-type="submit">确定</button>
+    </view>
+    
+    <view class='bottom-text'>
+        洗衣机编号:{{deviceCode}}，请与现场机器核对
+    </view>
+
+
+    </form>
+
+  </view>
+
+
+</view>

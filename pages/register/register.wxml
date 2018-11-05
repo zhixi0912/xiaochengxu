@@ -1,0 +1,46 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <block>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname"></text>
+    </block>
+  <form bindsubmit="formSubmit" bindreset="formReset">
+   <view class="section">
+    <view class="section__title">帐号</view>
+    <input name="input" placeholder="please input here" />
+  </view>
+  <view class="section">
+    <view class="section__title">邮箱</view>
+    <input name="input" placeholder="please input here" />
+  </view>
+  <view class="section">
+    <view class="section__title">密码</view>
+    <input name="input" placeholder="please input here" />
+  </view>
+  <view class="section">
+    <view class="section__title">重复密码</view>
+    <input name="input" placeholder="please input here" />
+  </view>
+  <view class="section section_gap">
+    <view class="section__title">性别</view>
+    <radio-group name="radio-group">
+      <label><radio value="radio1"/>男</label>
+      <label><radio value="radio2"/>女</label>
+    </radio-group>
+  </view>
+  <view class="section section_gap">
+    <view class="section__title">checkbox</view>
+    <checkbox-group name="checkbox">
+      <label><checkbox value="checkbox1"/>checkbox1</label>
+      <label><checkbox value="checkbox2"/>checkbox2</label>
+    </checkbox-group>
+  </view>
+  <view class="btn-area">
+    <button formType="submit">提交</button>
+    <button formType="reset">重置</button>
+  </view>
+</form>
+  </view>
+ 
+</view>

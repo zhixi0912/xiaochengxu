@@ -1,0 +1,79 @@
+@import "../lib/weui.wxss";
+
+.page-section-ctn {
+  width: 240rpx; /*120px*/
+  text-align: center;
+  margin: 0 auto;
+}
+.page-section-ctn image{
+  width: 100%;
+  height: 190rpx; /*95px*/
+  margin-top: 120rpx;
+  margin-bottom: 80rpx;
+  overflow: inherit;
+}
+.page-body .login-icon{
+  height: 20rpx;
+  width: 20rpx;
+}
+.page-body{
+  padding: 10rpx 40rpx;
+}
+.page-body .weui-cell .weui-label{
+  width: 40rpx;
+  margin-right:10px; 
+}
+.page-body .weui-cell{
+  padding-left: 0;
+  padding-right: 0;
+  padding:15px 0px;
+
+}
+.weui-cells_after-title{
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.weui-btn-area{
+  margin-left: 0;
+  margin-right: 0;
+}
+.page-body .weui-cells:before{
+  display: none;
+}
+.page-body .weui-cells:after,.page-body .weui-cell:before{
+  left: 25px;
+}
+.page-body .weui-cell .weui-label .phone-icon{
+  width: 18px;
+  height: 26px;
+}
+.page-body .weui-cell .weui-label .pw-code-icon{
+  width: 20px;
+  height: 22px;
+}
+
+.page-body .weui-vcode-btn{
+  border: none;
+  color: #fe930f;
+  font-size: 14px;
+  border-radius: 20px;
+  height:1.98823529em;
+  line-height:1.98823529em;
+  /* background: linear-gradient(to right, #fe930f , #fe930f); */
+}
+.page-body .btn-gray-bg{
+  background: #ccc;
+  color: #ffffff;
+}
+.page-body .weui-btn-area .weui-btn{
+  background: linear-gradient(to right, #f36902 , #ff9911);
+}
+.bottom-text{
+  color: #9f9f9f;
+  font-size: 12px;
+  text-align: center
+}
+.bottom-text navigator{
+  color: #f36902;
+  display: inline-block;
+}

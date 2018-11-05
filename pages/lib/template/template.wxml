@@ -1,0 +1,12 @@
+<!--pages/lib/template/template.wxml-->
+<template name="toast">
+     <view class='toast-out' wx:if='{{isShow}}'>
+         <view class='toast-in'>
+             <!-- <icon class='iconfont' type='{{iconClass}}'></icon> -->
+             <image class='icon-img' src='../../images/icon/{{iconClass}}.png'></image>
+             <view class='toast-txt'>
+                 {{txt}}
+             </view>
+         </view>
+     </view>
+</template>
