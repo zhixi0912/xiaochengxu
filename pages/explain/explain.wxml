@@ -1,0 +1,72 @@
+<!--pages/explain/explain.wxml-->
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">洗衣价目表</view>
+    </view>
+    <view class="page__bd">
+        <view class="weui-article">
+            <view class="weui-grids">
+                <navigator url="" class="weui-grid weui-grid-th" hover-class="weui-grid_active">
+                      <view class="weui-grid__label">模式</view>
+                  </navigator>
+                  <navigator url="" class="weui-grid weui-grid-th" hover-class="weui-grid_active">
+                     <view class="weui-grid__label">时间</view>
+                  </navigator>
+                  <navigator url="" class="weui-grid weui-grid-th" hover-class="weui-grid_active">
+                     <view class="weui-grid__label">价格</view>
+                  </navigator>
+              <block wx:for="{{listData}}" wx:key="{{code}}">
+                  <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+                     <view class="weui-grid__label">{{item.code}}</view>
+                  </navigator>
+                  <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+                      <view class="weui-grid__label">{{item.text}}</view>
+                  </navigator>
+                  <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+                      <view class="weui-grid__label">{{item.type}}</view>
+                  </navigator>
+              </block>
+            </view>
+
+            <view class="weui-article__h1">洗衣步骤</view>
+            <view class="weui-article__section weui-article__section-b1">
+                <view class="weui-article__section">
+                    <view class="weui-article__p">
+                    1.首次使用需先充值余额，目前支持支付宝及微信充值
+                       <!-- 1.将<text>待洗衣服</text>和<text>洗涤剂</text>放入洗衣机 -->
+                    </view>
+                    <view class="weui-article__p">
+                        <image class="weui-article__img" src="../../images/explain/pic_article-1.png" mode="aspectFit" style="width: {{imagewidth}}px; height: {{imageheight}}px;" bindload="imageLoad"  />
+                    </view>
+                </view>
+                <view class="weui-article__section">
+                    <view class="weui-article__p">
+                        <!-- 2.启动小有APP,点击主菜单上的<text>洗衣服</text>按钮，点击<text>扫码洗衣</text>，将扫描框对准洗衣机上的<text>二维码</text>自动扫描 -->
+                        2.将您需要清洗的衣服及洗涤剂放入洗衣机内，完成后关闭洗衣盖板
+                    </view>
+                    <view class="weui-article__p">
+                        <image class="weui-article__img" src="../../images/explain/pic_article-2.png" mode="aspectFit" style="width: {{imagewidth}}px; height: {{imageheight}}px;" bindload="imageLoad"  />
+                    </view>
+                </view>
+                <view class="weui-article__section">
+                    <view class="weui-article__p">
+                        <!-- 2.启动小有APP,点击主菜单上的<text>洗衣服</text>按钮，点击<text>扫码洗衣</text>，将扫描框对准洗衣机上的<text>二维码</text>自动扫描 -->
+                        3.点击首页上洗衣按钮，将扫描框对准洗衣机上二维码自动扫描
+                    </view>
+                    <view class="weui-article__p">
+                        <image class="weui-article__img" src="../../images/explain/pic_article-3.png" mode="aspectFit" style="width: {{imagewidth}}px; height: {{imageheight}}px;" bindload="imageLoad"  />
+                    </view>
+                </view>
+                <view class="weui-article__section">
+                    <view class="weui-article__p">
+                        <!-- 2.启动小有APP,点击主菜单上的<text>洗衣服</text>按钮，点击<text>扫码洗衣</text>，将扫描框对准洗衣机上的<text>二维码</text>自动扫描 -->
+                        4.选择洗衣模式，点击确定，开始洗衣
+                    </view>
+                    <view class="weui-article__p">
+                        <image class="weui-article__img" src="../../images/explain/pic_article-4.png" mode="aspectFit" style="width: {{imagewidth}}px; height: {{imageheight}}px;" bindload="imageLoad"  />
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

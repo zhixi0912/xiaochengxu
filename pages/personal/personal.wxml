@@ -1,0 +1,90 @@
+<!--pages/personal/personal.wxml-->
+<view class="container">
+  <view class="page-head">
+    <view class='page-section-ctn'>
+      
+      <navigator url="../information/information" class="page__title" hover-class="">
+        <image src='../../images/personal/user-icon.png'></image>
+      </navigator>
+  
+      <view class="page__desc desc-1">{{mobile}}</view>
+      <view class="page__desc desc-2"><view class="desc-dox">一级会员</view></view>
+    </view> 
+  </view>
+  <view class="page-body">
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_access" bindtap="showDialogBtn" hover-class="weui-cell_active">
+            <view class="weui-cell__hd">
+                <image src="../../images/personal/icon-01.png" style="margin-right: 15px;margin-top:3px;vertical-align: middle;width:20px; height: 15px;"></image>
+            </view>
+            <view class="weui-cell__bd">{{pointsBalance}}积分<view class="weui-badges" style="margin-left: 5px;margin-top:8px;vertical-align: middle；"></view></view>
+            
+        </view>
+        <view bindtap="myWallet" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__hd">
+                <image src="../../images/personal/icon-02.png" style="margin-right: 15px;margin-top:-3px;vertical-align: middle;width:20px; height: 17px;"></image>
+            </view>
+            <view class="weui-cell__bd">我的钱包</view>
+            
+        </view>
+        <!-- <navigator url="../recharge/recharge" class="weui-cell weui-cell_access weui-cell-no-line" hover-class="weui-cell_active">
+            <view class="weui-cell__hd">
+                <image src="../../images/personal/icon-03.png" style="margin-right: 15px;margin-top:-4px;vertical-align: middle;width:20px; height: 16px;"></image>
+            </view>
+            <view class="weui-cell__bd">立即充值</view>
+            
+        </navigator> -->
+        <navigator url="../myOrder/myOrder" class="weui-cell weui-cell_access weui-cell-no-line" hover-class="weui-cell_active">
+            <view class="weui-cell__hd">
+                <image src="../../images/personal/icon-04.png" style="margin-right: 15px;vertical-align: middle;width:20px; height: 22px;"></image>
+            </view>
+            <view class="weui-cell__bd">我的订单</view>
+            
+        </navigator>
+        <!--<navigator url="" class="weui-cell weui-cell_access weui-cell-no-line" hover-class="weui-cell_active">
+            <view class="weui-cell__hd">
+                <image src="../../images/personal/icon.png" style="margin-right: 15px;vertical-align: middle;width:20px; height: 20px;"></image>
+            </view>
+            <view class="weui-cell__bd">发现</view>
+            
+        </navigator>-->
+        <navigator url="../explain/explain" class="weui-cell weui-cell_access weui-cell-no-line" hover-class="weui-cell_active">
+            <view class="weui-cell__hd">
+                <image src="../../images/personal/icon-06.png" style="margin-right: 15px;vertical-align: middle;width:20px; height: 22px;"></image>
+            </view>
+            <view class="weui-cell__bd">洗衣说明</view>
+            
+        </navigator>
+    </view>
+            
+    <view class="weui-form-preview__ft bott-fot">
+        <navigator url='../setUp/setUp' class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">设置</navigator>
+        <navigator url="../equipmentRepair/equipmentRepair" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">故障申报</navigator>
+    </view>   
+  </view>
+</view>
+<!--弹窗-->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">
+    <image src='../../images/points-icon.png'></image>
+    <view class="btn-cancel-close" bindtap="onCancel" data-status="cancel"><image class='close' src='../../images/close.png'></image></view>
+  </view>
+  <view class="modal-content">
+    <view class="modal-h1">
+      积分说明
+    </view>
+    <view class="modal-h2">
+                          <text>积分的获取</text>用户可通过充值及参与活动等行为获得积分奖励
+    </view>
+    <view class="modal-h2">
+                          <text>积分的用途</text>积分可以参与积分游戏，用于积分商城购物（开发中），
+用于余额充值等
+    </view>
+  </view>
+  
+  <!-- <view class="modal-footer">
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+  </view> -->
+</view>

@@ -1,0 +1,32 @@
+<!--pages/myOrder/myOrder.wxml-->
+<view class="page">
+    <view class="page__hd">
+       
+    </view>
+    <view class="page__bd">
+        <view class="weui-form-preview" wx:for="{{washingOrderList}}" wx:key="index" data-orderstate="{{item.orderState}}" data-systemorderno="{{item.systemOrderNo}}" data-deviceCode="{{item.deviceCode}}" bindtap="showTopTips">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">订单号：{{item.systemOrderNo}}</view>
+                    <view class="weui-form-preview__value_in-hd">{{item.orderState}}</view>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label weui-form-preview__value-t3">{{item.modeName}}</view>
+                    <view class="weui-form-preview__value weui-form-preview__value-t1">￥{{item.orderAmount/100}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">洗衣机编号:</view>
+                    <view class="weui-form-preview__value weui-form-preview__value-t2">{{item.deviceCode}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">{{item.createDate}}</view>
+                    <view class="weui-form-preview__value weui-form-preview__value-t2">{{item.siteName}}</view>
+                </view>
+            </view>
+            
+        </view>
+        
+    </view>
+</view>

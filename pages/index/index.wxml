@@ -1,0 +1,33 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="page-head">
+    <view class='page-section-ctn'>
+      
+    </view> 
+  </view>
+  <view class="page-body">
+    <view class="page-section page-section-gap">
+      <map id="myMap"
+        latitude="{{latitude}}"
+        longitude="{{longitude}}"
+        scale="{{scale}}"
+        controls="{{controls}}" 
+        bindcontroltap="bindcontroltap"
+        polyline="{{polyline}}
+        markers="{{markers}}"
+        bindmarkertap="bindmarkertap"
+        bindregionchange="bindregionchange"
+        show-location
+        >
+          <cover-view class="controls-box">
+          <cover-view class="controls" bindtap="scavenging">
+            <cover-view class="scavenging">
+              <cover-image class="code-img" src="../../images/icon-scavenging-2.png" />
+            </cover-view>
+            <cover-view class="time">立即洗衣</cover-view>
+          </cover-view>
+          </cover-view>
+      </map>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,25 @@
+<!--pages/detailed/detailed.wxml-->
+<view class="container">
+  <view class="page-head">
+    <view class='page-section-ctn'>
+      
+    </view> 
+  </view>
+  <view class="page-body">
+    <view class="weui-cells weui-cells_after-title">
+
+      <view class="weui-cell" wx:for="{{amountFlowList}}" wx:key="index">
+          <view class="weui-cell__bd">
+            <text class='weui-cell__bd-t1'>{{item.contents}}</text>
+            <text class='weui-cell__bd-t2'>{{item.date}}</text>
+          </view>
+          <view class="weui-cell__ft">{{item.type}}{{item.amount/100}}元</view>
+      </view>
+
+     
+  </view>
+  </view>
+</view>
+
+
+
